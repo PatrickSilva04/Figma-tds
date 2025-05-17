@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import axios from "axios";
 
+type Character = {
+  id: number;
+  name: string;
+  image: string;
+};
+
 const ExploreScreen = () => {
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
-    axios.get("https://rickandmortyapi.com/api/character")
+    axios
+      .get<{ results: Character[] }>("https://rickandmortyapi.com/api/character")
       .then((response) => setCharacters(response.data.results))
       .catch((error) => console.error(error));
   }, []);
@@ -30,7 +37,7 @@ const ExploreScreen = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   card: { alignItems: "center", marginBottom: 20 },
-  image: { width: 100, height: 100, borderRadius: 50 },
+  image: { width: 700, height: 400, borderRadius: 50 },
   name: { fontSize: 18, fontWeight: "bold" },
 });
 

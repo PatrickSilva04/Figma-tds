@@ -1,24 +1,21 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
-import CharactersScreen from "./screens/CharactersScreen";
-import CarsScreen from "./screens/CarsScreen";
-import NotFoundScreen from "./screens/NotFoundScreen";
+import HomeScreen from "./index";
+import ExploreScreen from "./explore";
+import ListScreen from "./list";
+
 
 const Stack = createNativeStackNavigator();
 
-const AppNavigator = () => {
+const Layout = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Characters" component={CharactersScreen} />
-        <Stack.Screen name="Cars" component={CarsScreen} />
-        <Stack.Screen name="NotFound" component={NotFoundScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="index" component={HomeScreen} />
+      <Stack.Screen name="explore" component={ExploreScreen} />
+      <Stack.Screen name="list" component={ListScreen} />
+      {/* <Stack.Screen name="not-found" component={NotFoundScreen} /> */}
+    </Stack.Navigator>
   );
 };
 
-export default AppNavigator;
+export default Layout;
